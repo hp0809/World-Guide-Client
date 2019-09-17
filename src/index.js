@@ -2,11 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
 import App from './Components/App/App';
+import ErrorBoundary from './ErrorBoundary'
 
 
 ReactDOM.render(
+  <ErrorBoundary>
     <BrowserRouter>
       <App />
-    </BrowserRouter>,
+    </BrowserRouter>
+    </ErrorBoundary>,
     document.getElementById('root')
   )

@@ -1,4 +1,4 @@
-//import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode'
 import config from '../config'
 
 let _timeoutId
@@ -21,9 +21,9 @@ const TokenService = {
   makeBasicAuthToken(userName, password) {
     return window.btoa(`${userName}:${password}`)
   },
-  //parseJwt(jwt) {
-    //return jwtDecode(jwt)
-  //},
+  parseJwt(jwt) {
+    return jwtDecode(jwt)
+  },
   readJwtToken() {
     return TokenService.parseJwt(TokenService.getAuthToken())
   },

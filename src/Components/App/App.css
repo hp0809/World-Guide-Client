@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial,  sans-serif;
+    text-align: center;
+}
+
+header {
+    background-color: white;
+    color: black;
+    min-height: 100px;
+}
+
+
+nav {
+    background-color: gray;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    display: inline;
+}
+
+.countryInfo {
+  position: relative;
+  text-align: center;
+  color: white;
+  width: 80%;
+  margin-left: auto;
+  margin-right:auto;
+}
+.countryInfo img {
+  width: 100%;
+}
+
+.countryName, #countDownDemo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 40px;
+}
+
+.details {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  min-height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.currencyInfo, .langInfo {
+  display: inline-block;
+  width: 50%;
+}
+
+.placesToGo {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: space-around;
+}
+
+.place {
+  width: 25%;
+  padding: 10px;
+}
+
+section {
+  margin: 10px;
+}
+section:nth-child(even) {
+  background-color: lightgray;
+}
+
+div:nth-child(odd) {
+  background-color:rgb(231, 231, 231);
+}
+
+footer {
+    margin-top: 40px;
+    background-color: gray;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+footer li {
+    display: inline;
+} 

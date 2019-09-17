@@ -1,11 +1,17 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import TokenService from '../../services/token-service'
+import UserService from '../../services/user-service'
+import IdleService from '../../services/idle-service'
 //import './Header.css'
 
 export default class Header extends Component {
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
+    UserService.clearUserInfo()
+    TokenService.clearCallbackBeforeExpiry()
+    IdleService.unRegisterIdleResets()
+    this.setState({error: null})
   }
 
   renderLogoutLink() {
@@ -21,6 +27,7 @@ export default class Header extends Component {
   }
 
   renderLoginLink() {
+    
     return (
       <div className='Header_not-logged-in'>
         <Link
