@@ -19,7 +19,8 @@ export default class CountryPage extends Component {
     constructor(props) {
         super(props);
         this.state={
-            currencyInfo:'',
+            currencyInfo:[],
+            exchange_rate:'',
             error: null,
             countryName: '',
             map: '',
@@ -35,21 +36,38 @@ export default class CountryPage extends Component {
     componentDidMount() {
         const {countryName} = this.props.match.params
         const currencyCode = this.state.currency_code
-        console.log(currencyCode)
+        
         CountryService.getCountryInfo(countryName)
         LanguageService.getLanguageInfo(countryName)
             .then(this.parseCountryAndLang)
             .catch(this.state.error);
-        fetch(`http://data.fixer.io/api/latest?access_key=1634d95e8dbb80da8bafd261065ed654&base=EUR&symbols=${currencyCode}`
-                )
-                .then(res => res.json())
+          
+        fetch(`http://data.fixer.io/api/latest?access_key=1634d95e8dbb80da8bafd261065ed654&base=EUR`)
+                .then(res => {
+                    return res.json()}
+                    )
                 .then((data) => {
-                    JSON.stringify(data)
-                    this.setState({currencyInfo: [data]})
-                })
+                    
+                    let currency = data.rates               
+                    this.setState({currencyInfo: currency})
+                    console.log(this.state.currencyInfo)
+                    })
+                .catch(console.log)
     } 
 
+    renderCurrency = () => {
+        let code = this.state.currency_code
+        let currency = this.state.currencyInfo
+        const currencyCode = Object.keys(currency)
+        const currencyValue = Object.values(currency)
+        for(let i = 0; i<currencyCode.length; i++) {
+            if(code === currencyCode[i]) {
+                return currencyValue[i]
+            } 
+        }
+    }
     
+
     parseCountryAndLang = () => {
         const countryInfo = JSON.parse(window.localStorage.countryInfo)
         const langInfo = JSON.parse(window.localStorage.langInfo)
@@ -80,11 +98,8 @@ export default class CountryPage extends Component {
         console.log(window.localStorage)
     }
     render() {
-        console.log(this.state.currencyInfo["rates"])
         const countryInfo = this.state
         const langInfo = this.state
-        const currencyInfo = this.state
-        const curencyCode = this.state.currency_code
         return (
         <>
             <Link to='/'>
@@ -108,6 +123,7 @@ export default class CountryPage extends Component {
                     <Section className='currencyInfo'>
                         <h3>{countryInfo.countryName}'s currency is the {countryInfo.currency}</h3>
                         <p>EUR to {countryInfo.currency_code}</p>
+                        1 EUR = {this.renderCurrency()} {countryInfo.currency_code}
                         
                     </Section>
                     <Section className='langInfo'>
