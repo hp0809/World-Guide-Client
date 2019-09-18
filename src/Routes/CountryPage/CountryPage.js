@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 import {Section} from '../../Components/Utils/Utils';
-import config from '../../config'
 import CountryService from '../../services/country-service';
-import CountryDetails from '../../services/country-details-service'
+import CountryDetails from '../../services/country-details-service';
 import LanguageService from '../../services/language-service';
-import UserService from '../../services/user-service'
-import APIContext from '../../APIContext'
+import APIContext from '../../APIContext';
+import PlacesService from '../../services/places-service';
+import './CountryPage.css'
 
 
 export default class CountryPage extends Component {
@@ -20,7 +20,6 @@ export default class CountryPage extends Component {
         super(props);
         this.state={
             currencyInfo:[],
-            exchange_rate:'',
             error: null,
             countryName: '',
             map: '',
@@ -28,18 +27,28 @@ export default class CountryPage extends Component {
             capital:'',
             language:'',
             currency:'',
-            currency_code: ''
-
+            currency_code: '',
+            place1_name: '',
+            place1_img: '',
+            place1_link: '',
+            place2_name: '',
+            place2_img: '',
+            place2_link: '',
+            place3_name: '',
+            place3_img: '',
+            place3_link: '',
+            place4_name: '',
+            place4_img: '',
+            place4_link: '',
         }
     }
 
     componentDidMount() {
         const {countryName} = this.props.match.params
-        const currencyCode = this.state.currency_code
         
         CountryService.getCountryInfo(countryName)
+        PlacesService.getPlacesInfo(countryName)
         LanguageService.getLanguageInfo(countryName)
-            .then(this.parseCountryAndLang)
             .catch(this.state.error);
           
         fetch(`http://data.fixer.io/api/latest?access_key=1634d95e8dbb80da8bafd261065ed654&base=EUR`)
@@ -47,12 +56,11 @@ export default class CountryPage extends Component {
                     return res.json()}
                     )
                 .then((data) => {
-                    
                     let currency = data.rates               
                     this.setState({currencyInfo: currency})
-                    console.log(this.state.currencyInfo)
                     })
                 .catch(console.log)
+                .then(this.parseCountryLangPlace)
     } 
 
     renderCurrency = () => {
@@ -68,9 +76,11 @@ export default class CountryPage extends Component {
     }
     
 
-    parseCountryAndLang = () => {
+    parseCountryLangPlace = () => {
         const countryInfo = JSON.parse(window.localStorage.countryInfo)
         const langInfo = JSON.parse(window.localStorage.langInfo)
+        const placeInfo = JSON.parse(window.localStorage.placeInfo)
+        console.log(window.localStorage)
         this.setState ({
             countryName: countryInfo.name,
             map: countryInfo.map,
@@ -88,20 +98,38 @@ export default class CountryPage extends Component {
             toilet: langInfo.toilet,
             english: langInfo.english,
             cost: langInfo.cost,
-            would_like: langInfo.would_like
+            would_like: langInfo.would_like,
+            place1_name: placeInfo.place1_name,
+            place1_img: placeInfo.place1_img,
+            place1_link: placeInfo.place1_link,
+            place2_name: placeInfo.place2_name,
+            place2_img: placeInfo.place2_img,
+            place2_link: placeInfo.place2_link,
+            place3_name: placeInfo.place3_name,
+            place3_img: placeInfo.place3_img,
+            place3_link: placeInfo.place3_link,
+            place4_name: placeInfo.place4_name,
+            place4_img: placeInfo.place4_img,
+            place4_link: placeInfo.place4_link,
         })        
     }
 
     handleClick = () => {
         CountryDetails.clearCountryDetails();
         LanguageService.clearLanguageInfo();
+        PlacesService.clearPlaceInfo();
         console.log(window.localStorage)
     }
     render() {
         const countryInfo = this.state
         const langInfo = this.state
+        const placeInfo = this.state
+        const error = this.state.error
         return (
         <>
+            <div role='alert'>
+                {error && <p className='red'>{error}</p>}
+            </div>
             <Link to='/'>
                 <button type='submit' onClick={this.handleClick}>
                     Search another country!
@@ -142,26 +170,39 @@ export default class CountryPage extends Component {
                             <li>I would like this: {langInfo.would_like}</li>
                         </ul>
                     </Section>
-                    {/*<Section className="placesToGo">
+                    <Section className="placesToGo">
+                        <h4>Places to visit in {countryInfo.countryName}</h4>
                         <ul className='places'>
                             <li>
-                                Place 1
-                                <img alt='kitty' src="http://placekitten.com/80/80"/> 
+                                {placeInfo.place1_name}
+                                <img alt={`${placeInfo.place1_name}`} src={`${placeInfo.place1_img}`}/>
+                                <a href={`${placeInfo.place1_link}`} >
+                                    <p>More info</p>
+                                </a> 
                             </li>
                             <li>
-                                Place 2
-                                <img alt='kitty' src="http://placekitten.com/80/80"/> 
+                                {placeInfo.place2_name}
+                                <img alt={`${placeInfo.place2_name}`} src={`${placeInfo.place2_img}`}/>
+                                <a href={`${placeInfo.place2_link}`} >
+                                    <p>More info</p>
+                                </a>  
                             </li>
                             <li>
-                                Place 3
-                                <img alt='kitty' src="http://placekitten.com/80/80"/> 
+                                {placeInfo.place3_name}
+                                <img alt={`${placeInfo.place3_name}`} src={`${placeInfo.place3_img}`}/>
+                                <a href={`${placeInfo.place3_link}`} >
+                                    <p>More info</p>
+                                </a>  
                             </li>
                             <li>
-                                Place 4
-                                <img alt='kitty' src="http://placekitten.com/80/80"/> 
+                                {placeInfo.place4_name}
+                                <img alt={`${placeInfo.place4_name}`} src={`${placeInfo.place4_img}`}/>
+                                <a href={`${placeInfo.place4_link}`} >
+                                    <p>More info</p>
+                                </a>  
                             </li>  
                         </ul>
-                    </Section>*/}
+                    </Section>
 
                 </Section>
             </>

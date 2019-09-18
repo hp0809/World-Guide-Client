@@ -101,6 +101,7 @@ class App extends Component {
             path={'/'}
             component={LandingPage}
           />
+          
           <PublicOnlyRoute
             path={'/login'}
             component={LoginPage}
@@ -110,10 +111,12 @@ class App extends Component {
             component={RegistrationPage}
           />
           <Route
-            path={`/:countryName`}
+            exact
+            path={'/:countryName'}
             component={CountryPage}
           />
           <Route
+            path='*'
             component={NotFoundPage}
           />
         </Switch>

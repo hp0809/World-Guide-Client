@@ -1,35 +1,58 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import {Button} from '../Utils/Utils';
+import NotFoundPage from '../../Routes/NotFoundPage/NotFoundPage';
 
 export default class CountrySearchForm extends Component {
     constructor(props) {
         super(props)
         this.state= {
-            country: undefined,
-            error: null
+            countryName: undefined,
+            error: null,
+            redirect: false
         }
     }
 
     handleSubmit = (event) => {
         event.preventDefault();  
-        console.log(this.state)      
+        console.log(this.state)
+              
         
-        if(this.state.country === undefined ||this.state.country === "undefined" ) {
+        if(this.state.countryName === undefined ||this.state.countryName === "undefined" ) {
             this.setState({error: 'Please select a country'})
         }
     }
 
     handleChange = (event) => {
-        this.setState({country: event.target.value}, () => {
-            console.log(this.state.country)
+        this.setState({countryName: event.target.value}, () => {
+            console.log(this.state.countryName)
             });        
     }
+    /*
+    setRedirect = () => {
+        if(this.state.countryName !== 'China'
+            || this.state.countryName !== 'France'
+            || this.state.countryName !== 'Germany'
+            || this.state.countryName !== 'Italy'
+            || this.state.countryName !== 'Japan'
+            || this.state.countryName !== 'Portugal'
+            || this.state.countryName !== 'Spain'
+            || this.state.countryName !== 'Thailand'
+            || this.state.countryName !== 'Turkey') {
+                this.setState({redirect: true})
+            }
+    }
+
+    renderRedirect = () => {
+        if(this.state.redirect) {
+            return <Redirect component={NotFoundPage}/>
+        }
+    }*/
 
     render() {
         
         const error = this.state.error
-        if(this.state.country !== undefined) {
+        if(this.state.countryName !== undefined) {
             return( 
                 <>
                 <div role='alert'>
@@ -40,7 +63,7 @@ export default class CountrySearchForm extends Component {
                     onSubmit={this.handleSubmit}
                 >
                 <div className='CountryName'>
-                    <select value={this.state.country} onChange={this.handleChange}>
+                    <select value={this.state.countryName} onChange={this.handleChange}>
                         <option defaultValue="undefined">Select</option>
                         <option value="China">China</option>
                         <option value="France">France</option>
@@ -51,10 +74,9 @@ export default class CountrySearchForm extends Component {
                         <option value="Spain">Spain</option>
                         <option value="Thailand">Thailand</option>
                         <option value="Turkey">Turkey</option>
-                        <option value="United Kingdom">United Kingdom</option>
                     </select>
                 </div>
-            <Link to={`/${this.state.country}`}>
+            <Link to={`/${this.state.countryName}`}>
                 <Button type='submit'>
                     Let's Go!                   
                 </Button>    
@@ -74,7 +96,7 @@ export default class CountrySearchForm extends Component {
                 onSubmit={this.handleSubmit}
             >
                 <div className='CountryName'>
-                    <select value={this.state.country} onChange={this.handleChange}>
+                    <select value={this.state.countryName} onChange={this.handleChange}>
                         <option defaultValue="undefined">Select</option>
                         <option value="China">China</option>
                         <option value="France">France</option>
@@ -85,7 +107,7 @@ export default class CountrySearchForm extends Component {
                         <option value="Spain">Spain</option>
                         <option value="Thailand">Thailand</option>
                         <option value="Turkey">Turkey</option>
-                        <option value="United Kingdom">United Kingdom</option>
+                        
                     </select>
                 </div>
                 

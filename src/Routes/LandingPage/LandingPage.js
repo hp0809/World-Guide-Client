@@ -10,8 +10,8 @@ export default class LandingPage extends Component {
         return(
             <>
             <Section className='MainPage'>
-                <h1>APP NAME</h1>
-                <h2>APP SUBTITLE</h2>
+                <h1>World Guide</h1>
+                <h3>Where will you go to next...?</h3>
                 <CountrySearchForm />
             </Section>
             </>

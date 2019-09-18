@@ -1,8 +1,8 @@
 import config from '../config'
 
-const CurrencyService = {
-    getCurrencyInfo(currency) {
-        return fetch(`http://data.fixer.io/api/latest?access_key=${config.FIXER_API_KEY}&format=1`, {            
+const PlacesService = {
+    getPlacesInfo(countryName) {
+        return fetch(`${config.API_ENDPOINT}/places/${countryName}`, {            
             method: 'GET',
             headers: {
                 "Content-Type": "application/json"
@@ -15,10 +15,12 @@ const CurrencyService = {
             : res.json()
         )
         .then(res => {
-            CountryDetails.saveCountryDetails(res)
+            window.localStorage.setItem(config.PLACE_INFO, JSON.stringify(res))
         })
     },
-    
+    clearPlaceInfo() {
+        window.localStorage.removeItem(config.PLACE_INFO)
+    }
 }
 
-export default CountryService
+export default PlacesService
