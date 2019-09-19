@@ -2,9 +2,18 @@ import React, {Component} from 'react'
 import {Section} from '../../Components/Utils/Utils'
 import CountrySearchForm from '../../Components/CountrySeachForm/CountrySearchForm'
 import './LandingPage.css'
+import CountryDetails from '../../services/country-details-service'
+import LanguageService from '../../services/language-service'
+import PlacesService from '../../services/places-service'
 
 
 export default class LandingPage extends Component {
+
+    componentDidMount() {
+        CountryDetails.clearCountryDetails();
+        LanguageService.clearLanguageInfo();
+        PlacesService.clearPlaceInfo();
+    }
 
     render() {
         return(

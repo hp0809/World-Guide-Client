@@ -16,6 +16,9 @@ export default class Header extends Component {
     UserService.clearUserInfo()
     TokenService.clearCallbackBeforeExpiry()
     IdleService.unRegisterIdleResets()
+    CountryDetails.clearCountryDetails();
+    LanguageService.clearLanguageInfo();
+    PlacesService.clearPlaceInfo();
     this.setState({error: null})
   }
 

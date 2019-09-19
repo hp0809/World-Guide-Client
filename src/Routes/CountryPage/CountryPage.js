@@ -49,8 +49,9 @@ export default class CountryPage extends Component {
         CountryService.getCountryInfo(countryName)
         PlacesService.getPlacesInfo(countryName)
         LanguageService.getLanguageInfo(countryName)
+            .then(this.parseCountryLangPlace)
             .catch(this.state.error);
-          
+            
         fetch(`http://data.fixer.io/api/latest?access_key=1634d95e8dbb80da8bafd261065ed654&base=EUR`)
                 .then(res => {
                     return res.json()}
@@ -61,9 +62,11 @@ export default class CountryPage extends Component {
                     })
                 .catch(console.log)
                 .then(this.parseCountryLangPlace)
+                .catch(console.log)
     } 
 
     renderCurrency = () => {
+        
         let code = this.state.currency_code
         let currency = this.state.currencyInfo
         const currencyCode = Object.keys(currency)
@@ -77,9 +80,13 @@ export default class CountryPage extends Component {
     
 
     parseCountryLangPlace = () => {
+        console.log(window.localStorage)
         const countryInfo = JSON.parse(window.localStorage.countryInfo)
         const langInfo = JSON.parse(window.localStorage.langInfo)
         const placeInfo = JSON.parse(window.localStorage.placeInfo)
+        console.log(countryInfo)
+        console.log(langInfo)
+        console.log(placeInfo)
         
         this.setState ({
             countryName: countryInfo.name,
