@@ -1,3 +1,35 @@
 img {
     max-width: 80%;
 }
+
+.countryPage {
+    margin-top: 10px;
+    background: rgb(245, 245, 245);
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 400px;
+}
+
+.langInfo {
+    width:100%;
+    
+}
+ul {
+    text-align: left;
+    list-style-type: square;
+}
+li {
+    margin:10px;
+
+}
+
+@media only screen and (min-width: 600px) {
+    .countryPage {
+        max-width: 80%;
+    }
+
+    ul {
+        text-align: center;
+    }
+    
+}

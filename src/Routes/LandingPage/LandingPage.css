@@ -1,0 +1,24 @@
+.mainPage {
+    max-width: 600px;
+    background: white;;
+    margin-right:auto;
+    margin-left: auto;
+}
+
+.forTesters {
+    max-width: 600px;
+    background: white;;
+    margin-right:auto;
+    margin-left: auto;
+    padding:10px;
+}
+
+@media only screen and (max-width: 600px) {
+    .mainPage {
+        max-width: 80%;
+    }
+    .forTesters {
+        max-width: 80%;
+    }
+}
+

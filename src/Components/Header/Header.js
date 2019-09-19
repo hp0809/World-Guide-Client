@@ -6,9 +6,11 @@ import IdleService from '../../services/idle-service'
 import CountryDetails from '../../services/country-details-service'
 import LanguageService from '../../services/language-service'
 import PlacesService from '../../services/places-service'
-//import './Header.css'
+import './Header.css'
 
 export default class Header extends Component {
+  state = { error: null}
+
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
     UserService.clearUserInfo()
@@ -61,6 +63,7 @@ export default class Header extends Component {
             World Guide
           </Link>
         </h1>
+       
         
         {TokenService.hasAuthToken()
           ? this.renderLogoutLink()

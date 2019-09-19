@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 //import PrivateRoute from '../Utils/PrivateRoute';
 import PublicOnlyRoute from '../Utils/PublicOnlyRoute';
 import LandingPage from '../../Routes/LandingPage/LandingPage'
@@ -52,6 +52,7 @@ class App extends Component {
         AuthApiService.postRefreshToken()
       })
     }
+    
   }
 
   componentWillUnmount() {
@@ -67,8 +68,15 @@ class App extends Component {
   
   }
 
+  handleSetUserInfo = userInfo => { 
+    this.setState({ 
+      userInfo: userInfo
+    })
+  }
+
   render() {
     const value = {
+      userInfo: this.state.userInfo,
       world_guide_users: this.state.world_guide_users,
       countryName: this.state.countryName,
       map: this.state.map,
@@ -111,14 +119,12 @@ class App extends Component {
             component={RegistrationPage}
           />
           <Route
-            exact
-            path={'/:countryName'}
+            
+            path={'/country/:countryName'}
             component={CountryPage}
           />
-          <Route
-            path='*'
-            component={NotFoundPage}
-          />
+          <Route path='/404' component={NotFoundPage} />
+          <Redirect from='*' to='/404' />
         </Switch>
        </main>
       </div>

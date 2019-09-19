@@ -1,0 +1,9 @@
+
+
+@media only screen and (min-width: 600px) {
+    .LoginPage {
+        max-width: 800px;
+        margin-right: auto;
+        margin-left: auto;        
+    }
+}

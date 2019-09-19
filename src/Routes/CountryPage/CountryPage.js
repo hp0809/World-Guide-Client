@@ -126,7 +126,7 @@ export default class CountryPage extends Component {
         const placeInfo = this.state
         const error = this.state.error
         return (
-        <>
+        <div className='countryPage'>
             <div role='alert'>
                 {error && <p className='red'>{error}</p>}
             </div>
@@ -139,24 +139,24 @@ export default class CountryPage extends Component {
                 <div className="countryHeader">
                     <img src={`${countryInfo.flag}`} 
                         alt={`The flag of ${countryInfo.name}`}
-                        width="80%" />
+                        />
                 </div>
                 <Section className='map'>
                     <img src={`${countryInfo.map}`} alt={`A map of ${countryInfo.name}`}
-                        width="80%" 
+                         
                     />
                 </Section>
-                <p>The capital of {countryInfo.countryName} is {countryInfo.capital}</p>
+                <h3>The capital of {countryInfo.countryName} is {countryInfo.capital}</h3>
                 <Section className='details'>
                     <Section className='currencyInfo'>
                         <h3>{countryInfo.countryName}'s currency is the {countryInfo.currency}</h3>
-                        <p>EUR to {countryInfo.currency_code}</p>
-                        1 EUR = {this.renderCurrency()} {countryInfo.currency_code}
+                        <p>Today's exchange rate is:</p>
+                        <p>1 EUR = {this.renderCurrency()} {countryInfo.currency_code}</p>
                         
                     </Section>
                     <Section className='langInfo'>
                         <h4>{countryInfo.countryName} speaks {countryInfo.language}</h4>
-                        <p>Some helpful phrases</p>
+                        <p>Here are some helpful phrases</p>
                         <ul>
                             <li>Hello: {langInfo.hello}</li>
                             <li>Goodbye: {langInfo.goodbye}</li>
@@ -174,28 +174,28 @@ export default class CountryPage extends Component {
                         <h4>Places to visit in {countryInfo.countryName}</h4>
                         <ul className='places'>
                             <li>
-                                {placeInfo.place1_name}
+                                <p>{placeInfo.place1_name}</p>
                                 <img alt={`${placeInfo.place1_name}`} src={`${placeInfo.place1_img}`}/>
                                 <a href={`${placeInfo.place1_link}`} >
                                     <p>More info</p>
                                 </a> 
                             </li>
                             <li>
-                                {placeInfo.place2_name}
+                                <p>{placeInfo.place2_name}</p>
                                 <img alt={`${placeInfo.place2_name}`} src={`${placeInfo.place2_img}`}/>
                                 <a href={`${placeInfo.place2_link}`} >
                                     <p>More info</p>
                                 </a>  
                             </li>
                             <li>
-                                {placeInfo.place3_name}
+                                <p>{placeInfo.place3_name}</p>
                                 <img alt={`${placeInfo.place3_name}`} src={`${placeInfo.place3_img}`}/>
                                 <a href={`${placeInfo.place3_link}`} >
                                     <p>More info</p>
                                 </a>  
                             </li>
                             <li>
-                                {placeInfo.place4_name}
+                                <p>{placeInfo.place4_name}</p>
                                 <img alt={`${placeInfo.place4_name}`} src={`${placeInfo.place4_img}`}/>
                                 <a href={`${placeInfo.place4_link}`} >
                                     <p>More info</p>
@@ -205,7 +205,7 @@ export default class CountryPage extends Component {
                     </Section>
 
                 </Section>
-            </>
+            </div>
         )
     } 
 }

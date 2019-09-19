@@ -1,24 +1,16 @@
-* {
+*{
+  font-family: 'PT Sans', sans-serif;
     box-sizing: border-box;
 }
-
-body {
-    font-family: Arial,  sans-serif;
-    text-align: center;
+body{
+  margin:0;
+  text-align: center;
+  background-image: url("https://image.freepik.com/free-vector/stylish-hexagonal-line-pattern-background_1017-19742.jpg");
+  background-size: auto;
 }
 
-header {
-    background-color: white;
-    color: black;
-    min-height: 100px;
-}
-
-
-nav {
-    background-color: gray;
-    color: white;
-    display: flex;
-    justify-content: center;
+button {
+  margin:15px;
 }
 
 nav li {
@@ -37,52 +29,21 @@ nav li {
   width: 100%;
 }
 
-.countryName, #countDownDemo {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 40px;
+form input {
+  border-radius: 30px;
+  height: 40px;
+  margin:20px;
+  width: 180px;
+  padding: 12px 20px
 }
 
-.details {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  min-height: 200px;
-  margin-left: auto;
-  margin-right: auto;
+button {
+  cursor: pointer;
 }
 
-.currencyInfo, .langInfo {
-  display: inline-block;
-  width: 50%;
-}
-
-.placesToGo {
-  display: flex;
-  flex-direction: row;
-  width: 80%;
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: space-around;
-}
-
-.place {
-  width: 25%;
-  padding: 10px;
-}
 
 section {
   margin: 10px;
-}
-section:nth-child(even) {
-  background-color: lightgray;
-}
-
-div:nth-child(odd) {
-  background-color:rgb(231, 231, 231);
 }
 
 footer {

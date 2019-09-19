@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import {Link, Redirect} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Button} from '../Utils/Utils';
-import NotFoundPage from '../../Routes/NotFoundPage/NotFoundPage';
+
 
 export default class CountrySearchForm extends Component {
     constructor(props) {
@@ -28,26 +28,6 @@ export default class CountrySearchForm extends Component {
             console.log(this.state.countryName)
             });        
     }
-    /*
-    setRedirect = () => {
-        if(this.state.countryName !== 'China'
-            || this.state.countryName !== 'France'
-            || this.state.countryName !== 'Germany'
-            || this.state.countryName !== 'Italy'
-            || this.state.countryName !== 'Japan'
-            || this.state.countryName !== 'Portugal'
-            || this.state.countryName !== 'Spain'
-            || this.state.countryName !== 'Thailand'
-            || this.state.countryName !== 'Turkey') {
-                this.setState({redirect: true})
-            }
-    }
-
-    renderRedirect = () => {
-        if(this.state.redirect) {
-            return <Redirect component={NotFoundPage}/>
-        }
-    }*/
 
     render() {
         
@@ -76,7 +56,7 @@ export default class CountrySearchForm extends Component {
                         <option value="Turkey">Turkey</option>
                     </select>
                 </div>
-            <Link to={`/${this.state.countryName}`}>
+            <Link to={`/country/${this.state.countryName}`}>
                 <Button type='submit'>
                     Let's Go!                   
                 </Button>    
