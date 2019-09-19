@@ -80,7 +80,7 @@ export default class CountryPage extends Component {
         const countryInfo = JSON.parse(window.localStorage.countryInfo)
         const langInfo = JSON.parse(window.localStorage.langInfo)
         const placeInfo = JSON.parse(window.localStorage.placeInfo)
-        console.log(window.localStorage)
+        
         this.setState ({
             countryName: countryInfo.name,
             map: countryInfo.map,
@@ -118,7 +118,7 @@ export default class CountryPage extends Component {
         CountryDetails.clearCountryDetails();
         LanguageService.clearLanguageInfo();
         PlacesService.clearPlaceInfo();
-        console.log(window.localStorage)
+        
     }
     render() {
         const countryInfo = this.state

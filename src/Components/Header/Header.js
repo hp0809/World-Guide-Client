@@ -23,7 +23,7 @@ export default class Header extends Component {
     CountryDetails.clearCountryDetails();
     LanguageService.clearLanguageInfo();
     PlacesService.clearPlaceInfo();
-    console.log(window.localStorage)
+    
 }
 
   renderLogoutLink() {
