@@ -84,9 +84,6 @@ export default class CountryPage extends Component {
         const countryInfo = JSON.parse(window.localStorage.countryInfo)
         const langInfo = JSON.parse(window.localStorage.langInfo)
         const placeInfo = JSON.parse(window.localStorage.placeInfo)
-        console.log(countryInfo)
-        console.log(langInfo)
-        console.log(placeInfo)
         
         this.setState ({
             countryName: countryInfo.name,
