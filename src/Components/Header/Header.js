@@ -11,8 +11,6 @@ import './Header.css'
 export default class Header extends Component {
   state = { error: null}
 
-  
-
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
     UserService.clearUserInfo()

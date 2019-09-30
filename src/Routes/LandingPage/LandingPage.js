@@ -4,7 +4,6 @@ import CountrySearchForm from '../../Components/CountrySeachForm/CountrySearchFo
 import './LandingPage.css'
 
 export default class LandingPage extends Component {
-    
     render() {
         return(
             <>

@@ -9,11 +9,12 @@ export default class LoginForm extends Component {
     
   }
 
-  state = { error: null }
+  state = { error:  null }
 
   static contextType = APIContext;
 
   handleSubmitJwtAuth = ev => {
+    
     ev.preventDefault()
     this.setState({error: null})
     const {user_name, password} = ev.target
@@ -25,10 +26,13 @@ export default class LoginForm extends Component {
       .then(res => {
         user_name.value = ''
         password.value = ''
-        this.props.onLoginSuccess();    
+        console.log(window.localStorage)
+        
+        this.props.onLoginSuccess();  
+        
       })
       .catch(res => {
-        this.setState({error: {message:res.error.message}})
+        this.setState({error: res.error})
      })
   }
 
