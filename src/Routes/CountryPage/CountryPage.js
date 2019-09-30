@@ -52,8 +52,8 @@ export default class CountryPage extends Component {
         PlacesService.getPlacesInfo(countryName)
             .catch(this.state.error);
         LanguageService.getLanguageInfo(countryName)
-            .then(this.parseCountryLangPlace)
             .catch(this.state.error);
+            
             
             
             
@@ -68,10 +68,10 @@ export default class CountryPage extends Component {
                 .catch(console.log)
                 .then(this.parseCountryLangPlace)
                 .catch(console.log)
+                
     } 
 
-    renderCurrency = () => {
-        
+    renderCurrency = () => {        
         let code = this.state.currency_code
         let currency = this.state.currencyInfo
         const currencyCode = Object.keys(currency)
@@ -140,8 +140,8 @@ export default class CountryPage extends Component {
         CountryDetails.clearCountryDetails();
         LanguageService.clearLanguageInfo();
         PlacesService.clearPlaceInfo();
-        
     }
+
     render() {
         const countryInfo = this.state
         const langInfo = this.state
@@ -173,7 +173,7 @@ export default class CountryPage extends Component {
                     <Section className='currencyInfo'>
                         <h3>{countryInfo.countryName}'s currency is the {countryInfo.currency}</h3>
                         <p>Today's exchange rate is:</p>
-                        <p>1 EUR = {this.renderCurrency()} {countryInfo.currency_code}</p>
+                        <p>1 EUR = {countryInfo.currency_code}</p>
                         
                     </Section>
                     <Section className='langInfo'>
