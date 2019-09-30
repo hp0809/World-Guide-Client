@@ -47,18 +47,31 @@ export default class CountryPage extends Component {
     componentDidMount() {
         const {countryName} = this.props.match.params
         
-        CountryService.getCountryInfo(countryName)
-            .catch(this.state.error);
-        PlacesService.getPlacesInfo(countryName)
-            .catch(this.state.error);
-        LanguageService.getLanguageInfo(countryName)
+        Promise.all([
+        CountryService.getCountryInfo(countryName),
+        LanguageService.getLanguageInfo(countryName),
+        PlacesService.getPlacesInfo(countryName),
+        fetch(`http://data.fixer.io/api/latest?access_key=7da0d6683948b750305d61dd4bc48d9d&base=EUR`)
+                .then(res => {
+                    return res.json()}
+                    )
+                .then((data) => {
+                    console.log(data.rates)
+                    let currency = data.rates               
+                    this.setState({currencyInfo: currency})
+                    })
+                .catch(console.log)
+        ])
             .catch(this.state.error)
-            .then(this.parseCountryLangPlace);
+
+            .then(this.parseCountryLangPlace)
+            .catch(console.error)
+        
             
             
             
             
-        fetch(`http://data.fixer.io/api/latest?access_key=1634d95e8dbb80da8bafd261065ed654&base=EUR`)
+        /*fetch(`http://data.fixer.io/api/latest?access_key=1634d95e8dbb80da8bafd261065ed654&base=EUR`)
                 .then(res => {
                     return res.json()}
                     )
@@ -67,7 +80,7 @@ export default class CountryPage extends Component {
                     this.setState({currencyInfo: currency})
                     })
                 .catch(console.log)
-                
+                */
                 
     } 
 
@@ -79,7 +92,7 @@ export default class CountryPage extends Component {
         for(let i = 0; i<currencyCode.length; i++) {
             if(code === currencyCode[i]) {
                 return currencyValue[i]
-            } 
+           } 
         }
     }
     
@@ -173,7 +186,7 @@ export default class CountryPage extends Component {
                     <Section className='currencyInfo'>
                         <h3>{countryInfo.countryName}'s currency is the {countryInfo.currency}</h3>
                         <p>Today's exchange rate is:</p>
-                        <p>1 EUR = {countryInfo.currency_code}</p>
+                        <p>1 EUR = {this.renderCurrency()} {countryInfo.currency_code}</p>
                         
                     </Section>
                     <Section className='langInfo'>

@@ -11,6 +11,8 @@ import './Header.css'
 export default class Header extends Component {
   state = { error: null}
 
+  
+
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
     UserService.clearUserInfo()
@@ -26,10 +28,12 @@ export default class Header extends Component {
     CountryDetails.clearCountryDetails();
     LanguageService.clearLanguageInfo();
     PlacesService.clearPlaceInfo();
+    this.setState({error: null})
     
 }
 
   renderLogoutLink() {
+    
     const userInfo = window.localStorage.userInfo
     const user = JSON.parse(userInfo)
     return (

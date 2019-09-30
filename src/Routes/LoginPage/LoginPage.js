@@ -11,11 +11,13 @@ export default class LoginPage extends Component {
     },
   }
 
-  handleLoginSuccess = () => {    
+  state = {error:null}
+
+  handleLoginSuccess = () => {
     const { location, history } = this.props
     const destination = (location.state || {}).from || '/'
     history.push(destination)
-    this.setState({error:null}) 
+    this.setState({error:null})
   }
 
   render() {

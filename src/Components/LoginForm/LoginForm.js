@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import { Button, Input } from '../Utils/Utils'
 import APIContext from '../../APIContext'
@@ -14,13 +13,10 @@ export default class LoginForm extends Component {
 
   static contextType = APIContext;
 
-  
-
   handleSubmitJwtAuth = ev => {
     ev.preventDefault()
-    
-    const {user_name, password} = ev.target
     this.setState({error: null})
+    const {user_name, password} = ev.target
 
     AuthApiService.postLogin({
       user_name: user_name.value,
@@ -29,12 +25,11 @@ export default class LoginForm extends Component {
       .then(res => {
         user_name.value = ''
         password.value = ''
-        this.props.onLoginSuccess()
-        this.context.setUserInfo()        
+        this.props.onLoginSuccess();    
       })
       .catch(res => {
-        this.setState({error: res.error.message})
-      })
+        this.setState({error: {message:res.error.message}})
+     })
   }
 
   render() {
