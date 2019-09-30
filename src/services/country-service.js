@@ -17,6 +17,7 @@ const CountryService = {
         )
         .then(res => {
             CountryDetails.saveCountryDetails(res)
+            return res
         })
     },
     

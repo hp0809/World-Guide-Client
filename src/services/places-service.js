@@ -16,6 +16,7 @@ const PlacesService = {
         )
         .then(res => {
             window.localStorage.setItem(config.PLACE_INFO, JSON.stringify(res))
+            return res
         })
     },
     clearPlaceInfo() {

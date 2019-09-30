@@ -16,6 +16,7 @@ const LanguageService = {
         )
         .then(res => {
             window.localStorage.setItem(config.LANG_INFO, JSON.stringify(res))
+            return res
         })
     },
     clearLanguageInfo() {

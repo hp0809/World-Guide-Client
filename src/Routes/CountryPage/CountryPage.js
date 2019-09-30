@@ -47,10 +47,14 @@ export default class CountryPage extends Component {
         const {countryName} = this.props.match.params
         
         CountryService.getCountryInfo(countryName)
+            .catch(this.state.error);
         PlacesService.getPlacesInfo(countryName)
+            .catch(this.state.error);
         LanguageService.getLanguageInfo(countryName)
             .then(this.parseCountryLangPlace)
             .catch(this.state.error);
+            
+            
             
         fetch(`http://data.fixer.io/api/latest?access_key=1634d95e8dbb80da8bafd261065ed654&base=EUR`)
                 .then(res => {
@@ -78,12 +82,24 @@ export default class CountryPage extends Component {
         }
     }
     
+    parseLangInfo = () => {
+        const langInfo = window.localStorage.langInfo
+        return JSON.parse(langInfo)
+    }
+    parseCountryInfo = () => {
+        const countryInfo = window.localStorage.countryInfo
+        console.log(JSON.parse(countryInfo))
+        return JSON.parse(countryInfo)
+    }
 
+    parsePlaceInfo = () => {
+        const placeInfo = window.localStorage.placeInfo
+        return JSON.parse(placeInfo)
+    }
     parseCountryLangPlace = () => {
-        console.log(window.localStorage)
-        const countryInfo = JSON.parse(window.localStorage.countryInfo)
-        const langInfo = JSON.parse(window.localStorage.langInfo)
-        const placeInfo = JSON.parse(window.localStorage.placeInfo)
+        const countryInfo = this.parseCountryInfo()
+        const langInfo = this.parseLangInfo()
+        const placeInfo = this.parsePlaceInfo()
         
         this.setState ({
             countryName: countryInfo.name,
@@ -115,7 +131,8 @@ export default class CountryPage extends Component {
             place4_name: placeInfo.place4_name,
             place4_img: placeInfo.place4_img,
             place4_link: placeInfo.place4_link,
-        })        
+        })    
+        console.log(this.state)    
     }
 
     handleClick = () => {

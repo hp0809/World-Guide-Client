@@ -30,9 +30,13 @@ export default class Header extends Component {
 }
 
   renderLogoutLink() {
+    const userInfo = window.localStorage.userInfo
+    const user = JSON.parse(userInfo)
     return (
       <div className='Header_logged-in'>
-        <Link
+        <p> Hello, {user.nickname || user.user_name}      
+          </p>
+          <Link
           onClick={this.handleLogoutClick}
           to='/'>
           Logout
