@@ -52,7 +52,8 @@ export default class CountryPage extends Component {
         PlacesService.getPlacesInfo(countryName)
             .catch(this.state.error);
         LanguageService.getLanguageInfo(countryName)
-            .catch(this.state.error);
+            .catch(this.state.error)
+            .then(this.parseCountryLangPlace);
             
             
             
@@ -66,8 +67,7 @@ export default class CountryPage extends Component {
                     this.setState({currencyInfo: currency})
                     })
                 .catch(console.log)
-                .then(this.parseCountryLangPlace)
-                .catch(console.log)
+                
                 
     } 
 
