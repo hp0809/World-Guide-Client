@@ -33,7 +33,7 @@ export default class LoginForm extends Component {
         this.context.setUserInfo()        
       })
       .catch(res => {
-        this.setState({error: res.error})
+        this.setState({error: res.error.message})
       })
   }
 

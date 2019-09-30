@@ -7,6 +7,7 @@ import LanguageService from '../../services/language-service';
 import APIContext from '../../APIContext';
 import PlacesService from '../../services/places-service';
 import './CountryPage.css'
+import config from '../../config'
 
 
 export default class CountryPage extends Component {
@@ -83,17 +84,18 @@ export default class CountryPage extends Component {
     }
     
     parseLangInfo = () => {
-        const langInfo = window.localStorage.langInfo
+        const langInfo = window.localStorage.getItem(config.LANG_INFO)
         return JSON.parse(langInfo)
     }
     parseCountryInfo = () => {
-        const countryInfo = window.localStorage.countryInfo
-        console.log(JSON.parse(countryInfo))
+        const countryInfo = window.localStorage.getItem(config.COUNTRY_INFO)
+        
         return JSON.parse(countryInfo)
     }
 
     parsePlaceInfo = () => {
-        const placeInfo = window.localStorage.placeInfo
+        const placeInfo = window.localStorage.getItem(config.PLACE_INFO)
+        console.log(placeInfo)
         return JSON.parse(placeInfo)
     }
     parseCountryLangPlace = () => {
@@ -131,8 +133,7 @@ export default class CountryPage extends Component {
             place4_name: placeInfo.place4_name,
             place4_img: placeInfo.place4_img,
             place4_link: placeInfo.place4_link,
-        })    
-        console.log(this.state)    
+        })       
     }
 
     handleClick = () => {
