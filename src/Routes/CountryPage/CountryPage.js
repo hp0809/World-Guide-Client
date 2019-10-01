@@ -56,7 +56,6 @@ export default class CountryPage extends Component {
                     return res.json()}
                     )
                 .then((data) => {
-                    console.log(data.rates)
                     let currency = data.rates               
                     this.setState({currencyInfo: currency})
                     })
@@ -66,21 +65,6 @@ export default class CountryPage extends Component {
 
             .then(this.parseCountryLangPlace)
             .catch(console.error)
-        
-            
-            
-            
-            
-        /*fetch(`http://data.fixer.io/api/latest?access_key=1634d95e8dbb80da8bafd261065ed654&base=EUR`)
-                .then(res => {
-                    return res.json()}
-                    )
-                .then((data) => {
-                    let currency = data.rates               
-                    this.setState({currencyInfo: currency})
-                    })
-                .catch(console.log)
-                */
                 
     } 
 
@@ -108,7 +92,6 @@ export default class CountryPage extends Component {
 
     parsePlaceInfo = () => {
         const placeInfo = window.localStorage.getItem(config.PLACE_INFO)
-        console.log(placeInfo)
         return JSON.parse(placeInfo)
     }
     parseCountryLangPlace = () => {

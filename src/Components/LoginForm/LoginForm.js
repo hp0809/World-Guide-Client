@@ -26,10 +26,7 @@ export default class LoginForm extends Component {
       .then(res => {
         user_name.value = ''
         password.value = ''
-        console.log(window.localStorage)
-        
         this.props.onLoginSuccess();  
-        
       })
       .catch(res => {
         this.setState({error: res.error})

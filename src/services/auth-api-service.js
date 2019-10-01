@@ -20,14 +20,12 @@ const AuthApiService = {
         )
         .then(res => {
           return Promise.all([
-            console.log(window.localStorage),
             TokenService.saveAuthToken(res.authToken),
             UserService.saveUserInfo(res.userInfo),
             IdleService.regiserIdleTimerResets(),
             TokenService.queueCallbackBeforeExpiry(() => AuthApiService.postRefreshToken())
         ])
           .then(() => {
-            console.log(window.localStorage)
               return res;
           });
         })

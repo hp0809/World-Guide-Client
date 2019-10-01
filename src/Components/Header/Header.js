@@ -11,6 +11,8 @@ import './Header.css'
 export default class Header extends Component {
   state = { error: null}
 
+  
+
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
     UserService.clearUserInfo()
@@ -36,8 +38,7 @@ export default class Header extends Component {
     const user = JSON.parse(userInfo)
     return (
       <div className='Header_logged-in'>
-        <p> Hello, {user.nickname || user.user_name}      
-          </p>
+        Hello, {user.nickname || user.user_name}      
           <Link
           onClick={this.handleLogoutClick}
           to='/'>

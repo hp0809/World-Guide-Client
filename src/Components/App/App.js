@@ -45,6 +45,7 @@ class App extends Component {
 
   componentDidMount() {
     IdleService.setIdleCallback(this.logoutFromIdle)
+    
 
     if (TokenService.hasAuthToken()) {
       IdleService.regiserIdleTimerResets()
