@@ -50,8 +50,12 @@ export default class CountryPage extends Component {
         Promise.all([
         CountryService.getCountryInfo(countryName),
         LanguageService.getLanguageInfo(countryName),
-        PlacesService.getPlacesInfo(countryName),
-        fetch(`http://data.fixer.io/api/latest?access_key=7da0d6683948b750305d61dd4bc48d9d&base=EUR`)
+        PlacesService.getPlacesInfo(countryName)
+
+        //Cannot use the third party API on the deployed version
+        //as the browser will not allow mixed content
+        
+        /*fetch(`https://data.fixer.io/api/latest?access_key=7da0d6683948b750305d61dd4bc48d9d&base=EUR`)
                 .then(res => {
                     return res.json()}
                     )
@@ -59,7 +63,7 @@ export default class CountryPage extends Component {
                     let currency = data.rates               
                     this.setState({currencyInfo: currency})
                     })
-                .catch(console.log)
+                .catch(console.log) */
         ])
             .catch(this.state.error)
 
@@ -67,8 +71,11 @@ export default class CountryPage extends Component {
             .catch(console.error)
                 
     } 
+    //Cannot use the third party API on the deployed version
+    //as the browser will not allow mixed content
 
-    renderCurrency = () => {        
+
+    /*renderCurrency = () => {        
         let code = this.state.currency_code
         let currency = this.state.currencyInfo
         const currencyCode = Object.keys(currency)
@@ -78,7 +85,7 @@ export default class CountryPage extends Component {
                 return currencyValue[i]
            } 
         }
-    }
+    }*/
     
     parseLangInfo = () => {
         const langInfo = window.localStorage.getItem(config.LANG_INFO)
@@ -168,8 +175,8 @@ export default class CountryPage extends Component {
                 <Section className='details'>
                     <Section className='currencyInfo'>
                         <h3>{countryInfo.countryName}'s currency is the {countryInfo.currency}</h3>
-                        <p>Today's exchange rate is:</p>
-                        <p>1 EUR = {this.renderCurrency()} {countryInfo.currency_code}</p>
+                       {/* <p>Today's exchange rate is:</p>
+                        <p>1 EUR = {this.renderCurrency()} {countryInfo.currency_code}</p> */}
                         
                     </Section>
                     <Section className='langInfo'>
