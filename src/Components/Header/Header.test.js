@@ -4,7 +4,7 @@ import toJson from 'enzyme-to-json'
 import Header from './Header'
 
 describe(`Header component`, () => {
-  it('renders a Header by default', () => {
+  it('renders a .Note by default', () => {
     const wrapper = shallow(<Header />)
     expect(toJson(wrapper)).toMatchSnapshot()
   })

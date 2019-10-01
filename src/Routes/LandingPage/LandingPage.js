@@ -5,10 +5,8 @@ import './LandingPage.css'
 
 export default class LandingPage extends Component {
     state = {error:null}
-    
+
     componentDidMount() {
-        console.log('Landing Page ran')
-        console.log(window.localStorage)
         this.setState({error:null})
     }
     render() {

@@ -4,11 +4,10 @@
   "private": true,
   "dependencies": {
     "cors": "^2.8.5",
-    "enzyme": "^3.10.0",
     "enzyme-to-json": "^3.4.0",
     "jwt-decode": "^2.2.0",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
+    "react": "^16.10.1",
+    "react-dom": "^16.10.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.1"
   },
@@ -36,5 +35,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0"
   }
 }

@@ -9,8 +9,15 @@ import PlacesService from '../../services/places-service'
 import './Header.css'
 
 export default class Header extends Component {
-  state = { error: null}
+  state = { 
+    error: null,
+    loggedIn: false
+  }
 
+
+  componentDidMount() {
+    this.handleHeaderLink()
+  }
   
 
   handleLogoutClick = () => {
@@ -31,6 +38,20 @@ export default class Header extends Component {
     this.setState({error: null})
     
 }
+
+  handleHeaderLink = () => {
+    TokenService.hasAuthToken() ? 
+    this.setState({loggedIn:true}) : 
+    this.setState({loggedIn:false})
+  }
+
+  renderHeaderLink = () => {
+    if(this.state.loggedIn === true) {
+      this.renderLogoutLink()
+    } else {
+      this.renderLoginLink()
+    }
+  }
 
   renderLogoutLink() {
     
@@ -74,10 +95,8 @@ export default class Header extends Component {
           </Link>
         </h1>
        
+        {this.renderHeaderLink()}
         
-        {TokenService.hasAuthToken()
-          ? this.renderLogoutLink()
-          : this.renderLoginLink()}
       </nav>
     </>
   }
