@@ -19,6 +19,7 @@ class App extends Component {
   state = {
     hasError: false,
     userInfo: null,
+    loggedIn: false,
     world_guide_users:[],
     countryName: '',
     map: '',
@@ -77,7 +78,8 @@ class App extends Component {
 
   render() {
     const value = {
-      userInfo: this.state.userInfo,
+      setUserInfo: this.handleSetUserInfo,
+      loggedIn: this.state.loggedIn,
       world_guide_users: this.state.world_guide_users,
       countryName: this.state.countryName,
       map: this.state.map,

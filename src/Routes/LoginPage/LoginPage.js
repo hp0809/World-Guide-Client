@@ -11,12 +11,14 @@ export default class LoginPage extends Component {
     },
   }
 
+  static contextType = APIContext
+
   handleLoginSuccess = () => {
+    console.log('handleLoginSuccess ran')
     const { location, history } = this.props
     const destination = (location.state || {}).from || '/'
-    this.setState({error:null})
+    //this.setState({error:null})
     history.push(destination)
-    
   }
 
   render() {

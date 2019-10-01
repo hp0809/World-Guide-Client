@@ -3,6 +3,7 @@ import React from 'react';
 export default React.createContext({
     setUserInfo: () => {},
     world_guide_users:[],
+    loggedIn: false,
     countryName: '',
     map: '',
     flag:'',

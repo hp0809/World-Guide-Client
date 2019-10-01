@@ -9,16 +9,9 @@ import PlacesService from '../../services/places-service'
 import './Header.css'
 
 export default class Header extends Component {
-  state = { 
-    error: null,
-    loggedIn: false
-  }
-
-
-  componentDidMount() {
-    this.handleHeaderLink()
-  }
-  
+  state = { error: null,
+            loggedIn: false
+          }
 
   handleLogoutClick = () => {
     TokenService.clearAuthToken()
@@ -35,36 +28,24 @@ export default class Header extends Component {
     CountryDetails.clearCountryDetails();
     LanguageService.clearLanguageInfo();
     PlacesService.clearPlaceInfo();
-    this.setState({error: null})
     
 }
 
-  handleHeaderLink = () => {
-    TokenService.hasAuthToken() ? 
-    this.setState({loggedIn:true}) : 
-    this.setState({loggedIn:false})
-  }
-
-  renderHeaderLink = () => {
-    if(this.state.loggedIn === true) {
-      this.renderLogoutLink()
-    } else {
-      this.renderLoginLink()
-    }
-  }
-
   renderLogoutLink() {
-    
     const userInfo = window.localStorage.userInfo
     const user = JSON.parse(userInfo)
     return (
       <div className='Header_logged-in'>
-        Hello, {user.nickname || user.user_name}      
-          <Link
+        <Link
           onClick={this.handleLogoutClick}
           to='/'>
           Logout
         </Link>
+        <Link className='greeting'
+          to='/'>
+          Hello, {user.nickname || user.user_name}!
+        </Link>
+        
       </div>
     )
   }
@@ -95,8 +76,10 @@ export default class Header extends Component {
           </Link>
         </h1>
        
-        {this.renderHeaderLink()}
         
+        {TokenService.hasAuthToken()
+          ? this.renderLogoutLink()
+          : this.renderLoginLink()}
       </nav>
     </>
   }

@@ -13,10 +13,6 @@ button {
   margin:15px;
 }
 
-nav li {
-    display: inline;
-}
-
 .countryInfo {
   position: relative;
   text-align: center;
@@ -45,16 +41,3 @@ button {
 section {
   margin: 10px;
 }
-
-footer {
-    margin-top: 40px;
-    background-color: gray;
-    color: white;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-}
-
-footer li {
-    display: inline;
-} 
