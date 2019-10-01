@@ -54,7 +54,7 @@ export default class CountryPage extends Component {
 
         //Cannot use the third party API on the deployed version
         //as the browser will not allow mixed content
-        
+
         /*fetch(`https://data.fixer.io/api/latest?access_key=7da0d6683948b750305d61dd4bc48d9d&base=EUR`)
                 .then(res => {
                     return res.json()}
@@ -201,28 +201,28 @@ export default class CountryPage extends Component {
                             <li>
                                 <p>{placeInfo.place1_name}</p>
                                 <img alt={`${placeInfo.place1_name}`} src={`${placeInfo.place1_img}`}/>
-                                <a href={`${placeInfo.place1_link}`} >
+                                <a href={`${placeInfo.place1_link}`} target="_blank">
                                     <p>More info</p>
                                 </a> 
                             </li>
                             <li>
                                 <p>{placeInfo.place2_name}</p>
                                 <img alt={`${placeInfo.place2_name}`} src={`${placeInfo.place2_img}`}/>
-                                <a href={`${placeInfo.place2_link}`} >
+                                <a href={`${placeInfo.place2_link}`} target="_blank">
                                     <p>More info</p>
                                 </a>  
                             </li>
                             <li>
                                 <p>{placeInfo.place3_name}</p>
                                 <img alt={`${placeInfo.place3_name}`} src={`${placeInfo.place3_img}`}/>
-                                <a href={`${placeInfo.place3_link}`} >
+                                <a href={`${placeInfo.place3_link}` } target="_blank" >
                                     <p>More info</p>
                                 </a>  
                             </li>
                             <li>
                                 <p>{placeInfo.place4_name}</p>
                                 <img alt={`${placeInfo.place4_name}`} src={`${placeInfo.place4_img}`}/>
-                                <a href={`${placeInfo.place4_link}`} >
+                                <a href={`${placeInfo.place4_link}`} target="_blank" >
                                     <p>More info</p>
                                 </a>  
                             </li>  
