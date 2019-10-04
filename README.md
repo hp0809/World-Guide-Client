@@ -10,7 +10,7 @@ World guide is a one stop app for finding all the information you need to know b
 
 Landing page
 
-![](screencap/spalshPage.png)
+![](screencap/splashPage.png)
 
 Search Results
 
